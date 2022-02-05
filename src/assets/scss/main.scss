@@ -1,0 +1,199 @@
+@use "sass:map";
+
+@import "baseline";
+@import "variables";
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,700;0,800;1,300;1,400;1,700;1,800&display=swap');
+
+:root {
+	background: map.get($colors, "dark");
+	color: map.get($colors, "light");
+	font-family: 'JetBrains Mono', monospace;
+	font-weight: map.get($font-weights, "regular");
+	font-size: $font-size;
+	line-height: $line-height;
+}
+
+p,
+h1 {
+	&:not(:nth-last-child(1)) {
+		margin-bottom: 1.25em;
+	}
+
+	overflow-wrap: break-word;
+}
+
+a {
+	color: inherit !important;
+}
+
+ul {
+	li {
+		position: relative;
+		display: flex;
+
+		&:before {
+			content: 'xxxx';
+			visibility: hidden;
+		}
+
+		.bullet {
+			position: absolute;
+			left: 0;
+			pointer-events: none;
+			user-select: none;
+		}
+	}
+}
+
+.m {
+	&-0 {
+		margin: 0 !important;
+	}
+
+	&b {
+		&-lot:not(:nth-last-of-type(1)) {
+			margin-bottom: $line-height;
+		}
+	}
+}
+
+::selection {
+	background: map.get($colors, "light");
+	color: map.get($colors, "dark");
+}
+
+.line {
+	font-weight: map.get($font-weights, "regular") !important;
+	font-style: normal !important;
+}
+
+// Generate color classes
+@each $color, $value in $colors {
+	.c-#{$color} {
+		color: $value;
+	}
+}
+
+// Generate font weight classes
+@each $weight, $value in $font-weights {
+	.w-#{$weight} {
+		font-weight: $value;
+	}
+}
+
+.i {
+	font-style: italic;
+}
+
+.container {
+	display: flex;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	max-height: 175vh;
+	min-width: $max-width + 100px;
+	max-width: (3 * $max-width) + (6 * 25px) + 50px;
+	flex-flow: column wrap;
+	align-content: flex-start;
+	justify-content: flex-start;
+	padding: 25px;
+
+	.block {
+		display: block;
+		flex: 0 0 0;
+		margin: 25px;
+		max-width: $max-width;
+
+
+		&:not(:first-of-type) {
+			margin-top: $line-height;
+		}
+
+		&:not(:nth-last-of-type(1)) {
+			margin-bottom: $line-height;
+		}
+
+		.block__header {
+			font-style: italic;
+			font-weight: map.get($font-weights, "extrabold");;
+			color: map.get($colors, "green");
+
+			.header__index {
+				//
+			}
+		}
+	}
+}
+
+.table {
+	&__border {
+		white-space: nowrap;
+		color: map.get($colors, "grey");
+		user-select: none;
+	}
+
+	&__header {
+		display: inline-block;
+		white-space: nowrap;
+		font-weight: map.get($font-weights, "extrabold");
+		font-style: italic;
+
+		&:before {
+			content: ': ';
+			color: map.get($colors, "grey");
+			font-style: normal;
+			font-weight: map.get($font-weights, "regular");
+		}
+
+		&:after {
+			content: ' :';
+			color: map.get($colors, "grey");
+			font-style: normal;
+			font-weight: map.get($font-weights, "regular");
+		}
+	}
+
+	&__row {
+		display: inline-block;
+		white-space: nowrap;
+
+		&:after {
+			content: ':';
+			color: map.get($colors, "grey");
+			font-style: normal;
+			font-weight: map.get($font-weights, "regular");
+		}
+	}
+
+	&__cell {
+		display: inline-block;
+		white-space: nowrap;
+
+		&:before {
+			content: ': ';
+			color: map.get($colors, "grey");
+			font-style: normal;
+			font-weight: map.get($font-weights, "regular");
+		}
+	}
+}
+
+@media (max-width: 1299px) {
+	.container {
+		max-height: 180vh;
+	}
+
+	@media (max-width: 1199px) {
+		.container {
+			max-height: 200vh;
+		}
+
+		@media (max-width: 991px) {
+			.container {
+				max-height: 100%;
+			}
+		}
+	}
+
+}
