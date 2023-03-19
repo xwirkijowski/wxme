@@ -3,7 +3,8 @@ import {render} from 'react-dom';
 
 import {clsx as x} from 'clsx';
 
-import s from './assets/scss/main.scss';
+import s from 'scss/main.scss';
+import dSkills from 'data/skills.json';
 
 const ws = (s) => {
 	return s.replaceAll(' ', '\u00A0')
@@ -92,10 +93,67 @@ const TC = ({children}) => {
 }
 
 const TR = ({cells}) => {
+	if (cells.length > 4) return;
+
+	while (4-cells.length !== 0) {
+		cells.push('null')
+	}
+
 	return (
 		<span className={(s['table__row'])}>{cells.map((item, i) => {
-			return <TC key={i}>{item}</TC>
-		})}</span>)
+			return <TC key={i}>{(item ? item : 'null')}</TC>
+		})}</span>
+	)
+}
+
+const Table = ({data}) => {
+	return (
+		<p className={s.table}>
+			<TB>{cF('',65, '.')}</TB>
+			{
+				(typeof data[0] === 'object') ? data.map((item, i)=> {
+					if (!item.category || !item.content) return;
+					return (
+						<>
+							<TH>{cF(item.category, 61)}</TH>
+							<TB>:{cF('', 15)}+{cF('', 15)}+{cF('', 15)}+{cF('', 15)}:</TB>
+							{item.content.reduce((ac, cV, i, arr) => {
+								if (i % 4 === 0) {
+									ac.push(arr.slice(i, i + 4))
+								}
+
+								return ac;
+							}, []).map((a, i) => {
+								return <TR cells={a} key={i}/>
+							})}
+							{'\n'}
+							{data.length-1 > i ? (<TB>:{cF('', 15, '.')}:{cF('', 15, '.')}:{cF('', 15, '.')}:{cF('', 15, '.')}:</TB>) : ''}
+						</>
+					)
+				}) : data.reduce((ac, cV, i, arr ) => {
+					if (i % 4 === 0) {
+						ac.push(arr.slice(i, i + 4))
+					}
+
+					return ac;
+				}, []).map((a, i) => {
+					return <TR cells={a} key={i} />
+				})
+			}
+			{'\n'}
+			<TB>:{cF('',15, '.')}:{cF('',15, '.')}:{cF('',15, '.')}:{cF('',15, '.')}:</TB>
+		</p>)
+}
+
+const Skills = () => {
+	const {skillMatrix, extras} = dSkills;
+	return (
+		<>
+			<Table data={skillMatrix} />
+			<p className={x(s['c-green'], s['m-0'])}><Bullet color={'green'}>+</Bullet> exploring the following:</p>
+			<Table data={extras} />
+		</>
+	)
 }
 
 const App = () => {
@@ -126,69 +184,28 @@ const App = () => {
 				<p>Lately I've been focusing on personal development by studying
 					art, exploring the electrical trade with some DIY projects and
 					brushing up my Japanese skills.</p>
+				<p>Programming since 2013.</p>
 				<p>Born in 2001, Poland.</p>
 			</Block>
 			<Block index={2} label={"Areas of expertise:"}>
 				<ul>
-					<ListItem>Web development <span className={s.i}>(full-stack)</span></ListItem>
+					<ListItem>Web development&nbsp;<span className={s.i}>(full-stack)</span></ListItem>
 					<ListItem>Search Engine Optimization</ListItem>
 					<ListItem>APIs</ListItem>
-					<ListItem>Graphic design</ListItem>
+					<ListItem>Graphic & UI design</ListItem>
 					<ListItem>Database design</ListItem>
 					<ListItem>More than basic secure development knowledge</ListItem>
 					<ListItem>E-commerce solutions</ListItem>
 					<ListItem>IT operations</ListItem>
 					<ListItem>Security systems & CCTV</ListItem>
-					<ListItem>Electrical engineering  <span className={s.i}>(amateur)</span></ListItem>
+					<ListItem>Electrical engineering&nbsp;<span className={s.i}>(amateur)</span></ListItem>
 					<ListItem>International logistics and transport of persons</ListItem>
 					<ListItem>Rental property management</ListItem>
 					<ListItem>POS and restaurant management systems</ListItem>
 				</ul>
 			</Block>
 			<Block index={3} label={"Skill matrix:"}>
-				<p className={s.table}>
-					<TB>{cF('',65, '.')}</TB>
-					<TH>{cF('Languages & technologies', 61)}</TH>
-					<TB>:{cF('',15)}+{cF('',15)}+{cF('',15)}+{cF('',15)}:</TB>
-					<TR cells={['HTML','CSS','PHP','JavaScript']} />
-					<TR cells={['Liquid','Python','SQL','GraphQL']} />
-					<TR cells={['Bash','BourneShell','C#','Git']} />
-					<TR cells={['SASS','LESS','jQuery','Node',]} />
-					<TR cells={['React','Next','Vue','Nuxt',]} />
-					<TR cells={['CSS Modules','Styled-comps.','Express','Electron']} />
-					<TB>:{cF('',15, '.')}:{cF('',15, '.')}:{cF('',15, '.')}:{cF('',15, '.')}:</TB>
-
-					<TH>{cF('Utilities', 61)}</TH>
-					<TB>:{cF('',15)}+{cF('',15)}+{cF('',15)}+{cF('',15)}:</TB>
-					<TR cells={['npm', 'Babel', 'WebPack', 'Apollo GQL']} />
-					<TR cells={['React Router', 'Mongoose', 'Grafana', 'Sentry.io']} />
-					<TR cells={['cslx', 'PDFMake', 'null', 'null']} />
-					<TB>:{cF('',15, '.')}:{cF('',15, '.')}:{cF('',15, '.')}:{cF('',15, '.')}:</TB>
-
-					<TH>{cF('Servers, databases and systems', 61)}</TH>
-					<TB>:{cF('',15)}+{cF('',15)}+{cF('',15)}+{cF('',15)}:</TB>
-					<TR cells={['MySQL','MongoDB','MariaDB','Redis']} />
-					<TR cells={['Neo4j','Nginx','Apache','Windows']} />
-					<TR cells={['Ubuntu','Debian','WordPress','Shopify']} />
-					<TR cells={['Shoper','Magento','Docker','null']} />
-					<TB>:{cF('',15, '.')}:{cF('',15, '.')}:{cF('',15, '.')}:{cF('',15, '.')}:</TB>
-
-					<TH>{cF('Software and other tools', 61)}</TH>
-					<TB>:{cF('',15)}+{cF('',15)}+{cF('',15)}+{cF('',15)}:</TB>
-					<TR cells={['MS Office','Photoshop','Illustrator','After Effects']} />
-					<TR cells={['Lightroom','JetBrains','Visual Studio','Jira']} />
-					<TR cells={['Confluence','Opsgenie','Statuspage','Bitbucket']} />
-					<TR cells={['Github','G Ads','G Workplace','G SearchCon.']} />
-					<TR cells={['G Analytics','MetaAds','Statuspage','Bitbucket']} />
-					<TR cells={['Figma','null','null','null']} />
-					<TB>:{cF('',15, '.')}:{cF('',15, '.')}:{cF('',15, '.')}:{cF('',15, '.')}:</TB>
-				</p>
-				<p className={x(s['c-green'], s['m-0'])}><Bullet color={'green'}>+</Bullet> exploring the following:</p>
-				<div className={s.table}>
-					<TB>{cF('',65, '.')}</TB>
-					<TR cells={['Ruby','Prolog','Dart','Cobol']} />
-					<TB>:{cF('',15, '.')}:{cF('',15, '.')}:{cF('',15, '.')}:{cF('',15, '.')}:</TB>
-				</div>
+				<Skills />
 			</Block>
 			<Block index={4} label={"Soft skills and other abilities:"}>
 				<ul>
@@ -278,9 +295,9 @@ const App = () => {
 			<Block>
 				<p className={x(s['w-extrabold'], s['c-red'])}>
 					<HorizontalLine/>
-					Got an interesting project or idea? I'm always up for a challenge
+					Got an interesting project or idea? I'm always up for a challenge<br />
 					<br />
-					<br />{cF('',18)}<a href={'mailto:sebastian@wirkijowski.me'}>{'>>'} CLICK HERE TO E-MAIL ME {'<<'}</a>
+					{cF('',18)}{'>>'} <a href={'mailto:sebastian@wirkijowski.me'}>CLICK HERE TO E-MAIL ME</a> {'<<'}
 					<br />
 					{cF('',17)}<span className={x(s['w-normal'], s['c-grey'])}>or ( sebastian@wirkijowski.me )</span>
 					<HorizontalLine/>
@@ -290,6 +307,8 @@ const App = () => {
 					{cF('',12)}
 					[>] <a href={"https://wirkijowski.group"}>WIRKIJOWSKI.GROUP</a>
 				</p>
+			</Block>
+			<Block>
 				<p className={s['c-grey']}>Made with Earl Grey by Sebastian Wirkijowski. All right reserved.</p>
 				<p className={s['c-grey']}>Exit 0</p>
 			</Block>

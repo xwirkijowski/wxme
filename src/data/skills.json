@@ -1,0 +1,117 @@
+{
+	"skillMatrix": [
+		{
+			"category": "Languages & technologies",
+			"content": [
+				"HTML",
+				"CSS",
+				"SASS/SCSS",
+				"LESS",
+				"PHP",
+				"JavaScript",
+				"SQL",
+				"Liquid",
+				"Pyhton",
+				"REST",
+				"GraphQL",
+				"Relay",
+				"Bash",
+				"BourneShell",
+				"C#",
+				"Git",
+				"jQuery",
+				"Node",
+				"Express.js",
+				"React",
+				"Next.js",
+				"React Native",
+				"Vue",
+				"Nuxt.js",
+				"Electron.js"
+			]
+		},
+		{
+			"category": "Utilities",
+			"content": [
+				"npm",
+				"Babel",
+				"WebPack",
+				"Apollo GQL",
+				"React Router",
+				"Mongoose",
+				"cslx",
+				"PDFMake"
+			]
+		},
+		{
+			"category": "Servers, databases and systems",
+			"content": [
+				"MySQL",
+				"MongoDB",
+				"MariaDB",
+				"Redis",
+				"Neo4J",
+				"Nginx",
+				"Apache",
+				"Windows",
+				"Ubuntu",
+				"Debian",
+				"WordPress",
+				"Shopify",
+				"Shoper",
+				"Magento",
+				"Docker"
+			]
+		},
+		{
+			"category": "Software and other tools",
+			"content": [
+				"MS Office",
+				"Photoshop",
+				"Illustrator",
+				"After Effects",
+				"Lightroom",
+				"InDesign",
+				"Animate",
+				"Jira",
+				"Confluence",
+				"OpsGenie",
+				"Statuspage",
+				"Bitbucket",
+				"GigHub",
+				"G Ads",
+				"G Analytics",
+				"G Tag Manager",
+				"G Search Con.",
+				"G Workplace",
+				"Figma",
+				"JetBrains",
+				"Visual Stidio",
+				"Grafana",
+				"Sentry.io",
+				"CloudFlare"
+			]
+		},
+		{
+			"category": "Other",
+			"content": [
+				"CSS Modules",
+				"Styled-comps.",
+				"BEM (CSS)",
+				"Atomic (CSS)",
+				"Domain Mgmt.",
+				"Apollo Feder.",
+				"Monolith API",
+				"Microservices"
+			]
+		}
+	],
+	"extras": [
+		"Ruby",
+		"Prolog",
+		"Dart",
+		"Flutter",
+		"Cobol",
+		"TypeScript"
+	]
+}

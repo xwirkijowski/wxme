@@ -10,6 +10,7 @@
 	color: map.get($colors, "light");
 	font-family: 'JetBrains Mono', monospace;
 	font-weight: map.get($font-weights, "regular");
+	font-size: 14px;
 	font-size: $font-size;
 	line-height: $line-height;
 }
@@ -103,7 +104,7 @@ ul {
 		display: block;
 		flex: 0 0 0;
 		margin: 25px;
-		max-width: $max-width;
+		width: $max-width;
 
 
 		&:not(:first-of-type) {
