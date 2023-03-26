@@ -5,6 +5,7 @@ import {clsx as x} from 'clsx';
 
 import s from 'scss/main.scss';
 import dSkills from 'data/skills.json';
+import dCerts from 'data/certs.json';
 
 const ws = (s) => {
 	return s.replaceAll(' ', '\u00A0')
@@ -17,19 +18,28 @@ const art = ws(`
 _/    _/    _/           _/           _/  _/  _/       _/_/_/    
  _/  _/  _/           _/  _/         _/      _/       _/         
   _/  _/           _/      _/       _/      _/       _/_/_/_/    
-	`); // ASCII art
+`); // ASCII art
 
-const HorizontalLine = (color, weight) => {
-	let n = maxLength; // Horizontal line width
-	let c = '—'; // Loop character
-	let hr = '';
 
-	while (n) {
-		hr += c;
-		n--;
+const cF = (string, width, character) => {
+	const l = string.length;
+	if (!character) character = '\u00A0';
+	if (!width) width = 65;
+
+	if (l < width) {
+		let n = l;
+		while (n < width) {
+			string += character;
+			n++
+		}
 	}
 
-	return (<span className={x(s.line, (color && s[`c-${color}`]), (weight && s[`w-${weight}`]))}>{hr}</span>)
+	return string.toString();
+};
+
+
+const HorizontalLine = (color, weight) => {
+	return (<span className={x(s.line, (color && s[`c-${color}`]), (weight && s[`w-${weight}`]))}>{cF('', 65, '—')}</span>)
 }
 
 const Wxme = ({className}) => {
@@ -54,22 +64,6 @@ const BlockHeader = ({className, index, label}) => {
 			{index ? <span className={s['header__index']}>[{index}] </span> : ""}{label}
 		</h1>
 	);
-};
-
-const cF = (string, width, character) => {
-	const l = string.length;
-	if (!character) character = '\u00A0';
-	if (!width) width = 65;
-
-	if (l < width) {
-		let n = l;
-		while (n < width) {
-			string += character;
-			n++
-		}
-	}
-
-	return string.toString();
 };
 
 const Bullet = ({children, color}) => {
@@ -153,6 +147,24 @@ const Skills = () => {
 			<p className={x(s['c-green'], s['m-0'])}><Bullet color={'green'}>+</Bullet> exploring the following:</p>
 			<Table data={extras} />
 		</>
+	)
+}
+
+const Certs = () => {
+	const {certs} = dCerts;
+
+	return (
+		<ul>
+			{certs.map((cert, i) => {
+				return (
+					<ListItem spacing={true} bullet={'-'} bulletColor={'green'} key={i}>
+						<p><span className={x(s['c-green'])}>{cert.name}</span> by <span className={s.i}>{cert.body}</span>.<br/>
+							<span className={x(s['c-grey'], s.i)}>Issued {cert.issued}. ID: <a href={cert.url} title={`Confirm ${cert.name} credential authenticity`}>{cert.id}</a>.</span>
+							</p>
+					</ListItem>
+				)
+			})}
+		</ul>
 	)
 }
 
@@ -265,7 +277,10 @@ const App = () => {
 					</ListItem>
 				</ul>
 			</Block>
-			<Block index={6} label={"What can I do for You?"}>
+			<Block index={6} label={"Certificates:"}>
+				<Certs />
+			</Block>
+			<Block index={7} label={"What can I do for You?"}>
 				<ul>
 					<ListItem bullet={'a'} bulletColor={'green'}>
 						<p><span className={x(s['c-green'])}>Consulting</span> on any of the things that I mentioned</p></ListItem>
@@ -315,6 +330,7 @@ const App = () => {
 		</div>
 	);
 };
+
 console.log(art);
 
 render(<App/>, document.getElementById('root'));

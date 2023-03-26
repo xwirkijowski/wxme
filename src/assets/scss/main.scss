@@ -67,6 +67,7 @@ ul {
 .line {
 	font-weight: map.get($font-weights, "regular") !important;
 	font-style: normal !important;
+	display: block;
 }
 
 // Generate color classes
