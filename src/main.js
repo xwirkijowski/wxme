@@ -312,15 +312,15 @@ const App = () => {
 					<HorizontalLine/>
 					Got an interesting project or idea? I'm always up for a challenge<br />
 					<br />
-					{cF('',18)}{'>>'} <a href={'mailto:sebastian@wirkijowski.me'}>CLICK HERE TO E-MAIL ME</a> {'<<'}
+					{cF('',18)}{'>>'} <a href={'mailto:sebastian@wirkijowski.me'} id={"link-mailto"}>CLICK HERE TO E-MAIL ME</a> {'<<'}
 					<br />
 					{cF('',17)}<span className={x(s['w-normal'], s['c-grey'])}>or ( sebastian@wirkijowski.me )</span>
 					<HorizontalLine/>
 				</p>
 				<p className={x(s['w-extrabold'], s['c-green'])}>
-					[>] <a href={"https://linkedin.com/in/sebastian-wirkijowski"}>PERSONAL LINKEDIN</a>
+					[>] <a href={"https://linkedin.com/in/sebastian-wirkijowski"} id={"link-linkedin"}>PERSONAL LINKEDIN</a>
 					{cF('',12)}
-					[>] <a href={"https://wirkijowski.group"}>WIRKIJOWSKI.GROUP</a>
+					[>] <a href={"https://wirkijowski.group"} id={"link-company"}>WIRKIJOWSKI.GROUP</a>
 				</p>
 			</Block>
 			<Block>
