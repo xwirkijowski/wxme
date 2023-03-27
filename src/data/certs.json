@@ -5,14 +5,24 @@
 			"body": "Google Digital Academy (Skillshop)",
 			"id": "146256451",
 			"issued": "March 2023",
-			"url": "https://skillshop.credential.net/076f4d9d-2902-42f6-9e62-018ed5c8c41b"
+			"url": "https://skillshop.credential.net/076f4d9d-2902-42f6-9e62-018ed5c8c41b",
+			"elementId": "link-cert-2"
+		},
+		{
+			"name": "Mobile Experience Certification Exam",
+			"body": "Google Digital Academy (Skillshop)",
+			"id": "146771297",
+			"issued": "March 2023",
+			"url": "https://skillshop.credential.net/da34d258-c709-4783-8d03-0ff5a417a2c0",
+			"elementId": "link-cert-3"
 		},
 		{
 			"name": "Fundamentals of digital marketing",
 			"body": "Google Digital Garage",
 			"id": "EK9 T3V UWG",
 			"issued": "March 2023",
-			"url": "https://learndigital.withgoogle.com/link/1ozo8ntbz7k"
+			"url": "https://learndigital.withgoogle.com/link/1ozo8ntbz7k",
+			"elementId": "link-cert-1"
 		}
 	]
 }

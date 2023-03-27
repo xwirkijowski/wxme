@@ -24,7 +24,7 @@ _/    _/    _/           _/           _/  _/  _/       _/_/_/
 const cF = (string, width, character) => {
 	const l = string.length;
 	if (!character) character = '\u00A0';
-	if (!width) width = 65;
+	if (!width) width = maxLength;
 
 	if (l < width) {
 		let n = l;
@@ -39,7 +39,7 @@ const cF = (string, width, character) => {
 
 
 const HorizontalLine = (color, weight) => {
-	return (<span className={x(s.line, (color && s[`c-${color}`]), (weight && s[`w-${weight}`]))}>{cF('', 65, '—')}</span>)
+	return (<span className={x(s.line, (color && s[`c-${color}`]), (weight && s[`w-${weight}`]))}>{cF('', maxLength, '—')}</span>)
 }
 
 const Wxme = ({className}) => {
@@ -158,8 +158,8 @@ const Certs = () => {
 			{certs.map((cert, i) => {
 				return (
 					<ListItem spacing={true} bullet={'-'} bulletColor={'green'} key={i}>
-						<p><span className={x(s['c-green'])}>{cert.name}</span> by <span className={s.i}>{cert.body}</span>.<br/>
-							<span className={x(s['c-grey'], s.i)}>Issued {cert.issued}. ID: <a href={cert.url} title={`Confirm ${cert.name} credential authenticity`}>{cert.id}</a>.</span>
+						<p><span className={x(s['c-green'])}><a href={cert.url} title={`Confirm ${cert.name} credential authenticity`} id={cert.elementId}>{cert.name}</a></span> by <span className={s.i}>{cert.body}</span>.<br/>
+							<span className={x(s['c-grey'], s.i)}>Issued {cert.issued}. ID: {cert.id}.</span>
 							</p>
 					</ListItem>
 				)
@@ -197,7 +197,7 @@ const App = () => {
 					art, exploring the electrical trade with some DIY projects and
 					brushing up my Japanese skills.</p>
 				<p>Programming since 2013.</p>
-				<p>Born in 2001, Poland.</p>
+				<p>Born in 2001, Poland. Based near Szczecin</p>
 			</Block>
 			<Block index={2} label={"Areas of expertise:"}>
 				<ul>
