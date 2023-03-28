@@ -1,6 +1,14 @@
 {
 	"certs": [
 		{
+			"name": "Graph Developer - Associate",
+			"body": "Apollo GraphQL",
+			"id": "e2855e7f-6f05-46e8-b1c0-c434cfe107ed",
+			"issued": "March 2023",
+			"url": "https://www.apollographql.com/tutorials/certifications/e2855e7f-6f05-46e8-b1c0-c434cfe107ed",
+			"elementId": "link-cert-4"
+		},
+		{
 			"name": "Google Analytics Certification",
 			"body": "Google Digital Academy (Skillshop)",
 			"id": "146256451",
