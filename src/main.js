@@ -318,7 +318,7 @@ const App = () => {
 					<HorizontalLine/>
 				</p>
 				<p className={x(s['w-extrabold'], s['c-green'])}>
-					[>] <a href={"https://linkedin.com/in/sebastian-wirkijowski"} id={"link-linkedin"}>PERSONAL LINKEDIN</a>
+					[>] <a href={"https://linkedin.com/in/wirkijowski"} id={"link-linkedin"}>PERSONAL LINKEDIN</a>
 					{cF('',12)}
 					[>] <a href={"https://wirkijowski.group"} id={"link-company"}>WIRKIJOWSKI.GROUP</a>
 				</p>
